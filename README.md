@@ -206,8 +206,6 @@ docker pull yourusername/python-hello-world
 * Docker images bundle all dependencies, avoiding environment drift
 
 
-````
-
 
 
 
