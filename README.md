@@ -1,8 +1,8 @@
 # 🐳 Python Flask App with Docker (Intermediate)
 
-This project demonstrates how to containerize a simple **Python Flask application** using **Docker**, without requiring Python to be installed on your host machine.
+This project demonstrates how to containerize a Python Flask application using Docker, enabling it to run consistently across any environment without requiring Python locally.
 
-It is designed to run easily on **Docker Playground** or any system with Docker installed.
+It is lightweight, easy to set up, and works seamlessly on Docker Playground or any system with Docker. By leveraging Docker’s layer caching and efficient rebuilds, this workflow is ideal for CI/CD pipelines, allowing rapid deployment of updates with minimal overhead.
 
 ## Runnning Python Flask App on Local system
 <img width="2880" height="1704" alt="image" src="https://github.com/user-attachments/assets/09c525aa-abfd-40f6-aec2-5972830d5517" />
@@ -29,6 +29,8 @@ It is designed to run easily on **Docker Playground** or any system with Docker 
 The application exposes a single endpoint (`/`) that returns a simple "Hello World" message.
 
 ---
+
+## Using Docker Playground
 
 ## 📝 app.py
 
@@ -191,7 +193,8 @@ docker pull yourusername/python-hello-world
 Update app.py by replacing the string "Hello World" with "Hello Beautiful World!" in app.py.
 
 Your file should have the following contents:
-```bash
+
+```python
 from flask import Flask
 
 app = Flask(__name__)
@@ -237,6 +240,11 @@ ed06208397d5: Layer already exists
 5accac14015f: Layer already exists 
 latest: digest: sha256:91874e88c14f217b4cab1dd5510da307bf7d9364bd39860c9cc8688573ab1a3a size: 1786
 ```
+<img width="2880" height="1531" alt="image" src="https://github.com/user-attachments/assets/d55c1619-ed25-4264-bb61-b76752c5cd7f" />
+<img width="2880" height="613" alt="image" src="https://github.com/user-attachments/assets/ae83012f-fda6-4d3f-9fe8-c064e8266569" />
+<img width="2878" height="1459" alt="image" src="https://github.com/user-attachments/assets/dc460d54-3972-4a49-8f23-5d4c45663e2f" />
+
+
 There is a caching mechanism in place for pushing layers too. Docker Hub already has all but one of the layers from an earlier push, so it only pushes the one layer that has changed.
 
 When you change a layer, every layer built on top of that will have to be rebuilt. Each line in a Dockerfile builds a new layer that is built on the layer created from the lines before it. This is why the order of the lines in your Dockerfile is important. You optimized your Dockerfile so that the layer that is most likely to change (COPY app.py /app.py) is the last line of the Dockerfile. Generally for an application, your code changes at the most frequent rate. This optimization is particularly important for CI/CD processes where you want your automation to run as fast as possible.
