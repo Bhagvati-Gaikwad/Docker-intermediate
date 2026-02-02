@@ -4,8 +4,7 @@ This project demonstrates how to containerize a Python Flask application using D
 
 It is lightweight, easy to set up, and works seamlessly on Docker Playground or any system with Docker. By leveraging Docker’s layer caching and efficient rebuilds, this workflow is ideal for CI/CD pipelines, allowing rapid deployment of updates with minimal overhead.
 
-## Runnning Python Flask App on Local system
-<img width="2880" height="1704" alt="image" src="https://github.com/user-attachments/assets/09c525aa-abfd-40f6-aec2-5972830d5517" />
+
 
 ---
 
