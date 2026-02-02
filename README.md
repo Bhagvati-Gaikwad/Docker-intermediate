@@ -244,10 +244,14 @@ latest: digest: sha256:91874e88c14f217b4cab1dd5510da307bf7d9364bd39860c9cc868857
 <img width="2880" height="613" alt="image" src="https://github.com/user-attachments/assets/ae83012f-fda6-4d3f-9fe8-c064e8266569" />
 <img width="2878" height="1459" alt="image" src="https://github.com/user-attachments/assets/dc460d54-3972-4a49-8f23-5d4c45663e2f" />
 
-
 There is a caching mechanism in place for pushing layers too. Docker Hub already has all but one of the layers from an earlier push, so it only pushes the one layer that has changed.
 
 When you change a layer, every layer built on top of that will have to be rebuilt. Each line in a Dockerfile builds a new layer that is built on the layer created from the lines before it. This is why the order of the lines in your Dockerfile is important. You optimized your Dockerfile so that the layer that is most likely to change (COPY app.py /app.py) is the last line of the Dockerfile. Generally for an application, your code changes at the most frequent rate. This optimization is particularly important for CI/CD processes where you want your automation to run as fast as possible.
+
+## Understand image layers
+<img width="2210" height="891" alt="image" src="https://github.com/user-attachments/assets/0506a53d-50e6-4a60-b02d-d63a047fa604" />
+## Cleanup
+<img width="2210" height="891" alt="image" src="https://github.com/user-attachments/assets/56b57f3d-6167-4361-ba22-b28de4f9ca17" />
 
 ## 📌 Key Concepts Covered
 
@@ -262,10 +266,13 @@ When you change a layer, every layer built on top of that will have to be rebuil
 
 ## ✅ Notes
 
-* Alpine images are lightweight and secure
-* Pinning image versions avoids unexpected updates
-* Copying source code at the end optimizes build caching
-* Docker images bundle all dependencies, avoiding environment drift
+* Use the Dockerfile to create reproducible builds for your application and to integrate your application with Docker into the CI/CD pipeline.
+* Docker images can be made available to all of your environments through a central registry. The Docker Hub is one example of a registry, but you can deploy your own registry on servers you control.
+* A Docker image contains all the dependencies that it needs to run an application within the image. This is useful because you no longer need to deal with environment drift (version differences) when you rely on dependencies that are installed on every environment you deploy to.
+* Docker uses of the union file system and "copy-on-write" to reuse layers of images. This lowers the footprint of storing images and significantly increases the performance of starting containers.
+* Image layers are cached by the Docker build and push system. There's no need to rebuild or repush image layers that are already present on a system.
+* Each line in a Dockerfile creates a new layer, and because of the layer cache, the lines that change more frequently, for example, adding source code to an image, should be listed near the bottom of the file.
+
 
 
 
