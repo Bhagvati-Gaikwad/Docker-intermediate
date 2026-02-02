@@ -4,7 +4,7 @@ This project demonstrates how to containerize a simple **Python Flask applicatio
 
 It is designed to run easily on **Docker Playground** or any system with Docker installed.
 
-# Runnning Python Flask App on Local system
+## Runnning Python Flask App on Local system
 <img width="2880" height="1704" alt="image" src="https://github.com/user-attachments/assets/09c525aa-abfd-40f6-aec2-5972830d5517" />
 
 ---
